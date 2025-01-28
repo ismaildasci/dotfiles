@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+
+# Local configs
+home/.yarnrc
+.claude/

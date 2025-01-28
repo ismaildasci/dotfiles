@@ -1,0 +1,170 @@
+#!/bin/bash
+#
+# Install dotfiles
+
+set -e  # Exit on error (but we use || true for optional steps)
+
+# Colors
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+step() { echo ""; echo -e "${BLUE}➜${NC} $1"; }
+success() { echo -e "${GREEN}✓${NC} $1"; }
+warn() { echo -e "${YELLOW}⚠${NC} $1"; }
+error() { echo -e "${RED}✗${NC} $1"; exit 1; }
+
+echo ""
+step "Install Dotfiles"
+echo ""
+warn "This will install/update your terminal setup"
+echo ""
+read -p "Continue? (y/n) " -n 1 -r
+echo ""
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo ""
+    step "Cancelled"
+    echo ""
+    exit 0
+fi
+
+echo ""
+sudo -v
+
+# Start
+touch ~/.hushlogin
+step "Installing Oh My Zsh"
+if [ ! -d ~/.oh-my-zsh ]; then
+    rm -rf ~/.oh-my-zsh
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh -s -- --unattended || warn "Oh My Zsh installation failed"
+fi
+success "Oh My Zsh installed"
+
+# Git configuration
+step "Configuring Git"
+ln -sf ~/.dotfiles/home/.gitconfig ~/.gitconfig
+ln -sf ~/.dotfiles/home/.global-gitignore ~/.global-gitignore
+success "Git configured"
+
+# Symlinks
+step "Creating symlinks"
+rm -f ~/.zshrc ~/.vimrc ~/.vim ~/.mackup.cfg
+ln -sf ~/.dotfiles/home/.zshrc ~/.zshrc
+ln -sf ~/.dotfiles/home/.vimrc ~/.vimrc
+ln -sf ~/.dotfiles/home/.vim ~/.vim
+ln -sf ~/.dotfiles/macos/.mackup.cfg ~/.mackup.cfg
+
+# Ghostty terminal config
+mkdir -p ~/.config/ghostty
+ln -sf ~/.dotfiles/config/ghostty/config ~/.config/ghostty/config
+success "Symlinks created"
+
+# NPM setup
+step "Configuring npm"
+
+# Fix npm permission issues (EACCES error)
+for npm_dir in ~/.npm ~/.npm-packages; do
+    if [ -d "$npm_dir" ]; then
+        sudo chown -R $(id -u):$(id -g) "$npm_dir"
+    fi
+done
+if [ -f ~/.npmrc ]; then
+    sudo chown $(id -u):$(id -g) ~/.npmrc
+fi
+
+mkdir -p ~/.npm-packages
+npm config set prefix ~/.npm-packages || warn "npm config failed"
+success "npm configured"
+
+# Homebrew
+step "Installing Homebrew"
+if ! command -v brew &>/dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+success "Homebrew installed"
+
+# Install all packages from Brewfile
+step "Installing packages from Brewfile"
+brew bundle --file=~/.dotfiles/config/Brewfile || warn "Some packages failed (likely already installed)"
+success "Brewfile processed"
+
+# fnm - Node.js version manager
+step "Setting up fnm"
+if command -v fnm &>/dev/null || [ -x /opt/homebrew/bin/fnm ]; then
+    eval "$(/opt/homebrew/bin/fnm env --use-on-cd)" || warn "fnm activation failed"
+    /opt/homebrew/bin/fnm install --lts || warn "fnm install failed"
+    /opt/homebrew/bin/fnm use lts-latest || warn "fnm use failed"
+    success "fnm configured"
+else
+    warn "fnm not found - run 'brew install fnm' first"
+fi
+
+# Laravel Herd
+step "Checking Laravel Herd"
+if command -v herd &>/dev/null; then
+    success "Laravel Herd is installed"
+    echo "  PHP extensions (imagick, redis, xdebug) can be managed via Herd UI"
+else
+    warn "Laravel Herd not found"
+    echo "  Install Herd from: https://herd.laravel.com"
+    echo "  Herd manages PHP, Composer, and extensions automatically"
+fi
+
+# Global npm packages
+step "Installing global npm packages"
+npm install -g agent-browser || warn "agent-browser already installed or failed"
+agent-browser install 2>/dev/null || warn "agent-browser setup skipped"
+success "npm packages processed"
+
+# Global Composer packages
+step "Installing global Composer packages"
+composer global require laravel/envoy || warn "envoy already installed or failed"
+composer global require spatie/phpunit-watcher || warn "phpunit-watcher already installed or failed"
+success "Composer packages processed"
+
+# MySQL
+step "Starting MySQL"
+brew services start mysql || warn "MySQL already running or failed"
+success "MySQL processed"
+
+# macOS defaults
+echo ""
+read -p "Configure macOS defaults? (y/n) " -n 1 -r
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    bash ~/.dotfiles/macos/set-defaults.sh || warn "macOS defaults had issues"
+else
+    warn "Skipping macOS defaults"
+fi
+
+# Claude Code setup
+echo ""
+read -p "Install Claude Code? (y/n) " -n 1 -r
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    bash ~/.dotfiles/bin/install-claude-code || warn "Claude Code setup had issues"
+else
+    warn "Skipping Claude Code installation"
+fi
+
+# Done
+echo ""
+success "Installation complete!"
+echo ""
+step "Next steps:"
+echo "  • Open Ghostty terminal (already configured)"
+echo "  • Restore settings: mackup restore (if you have backups)"
+echo "  • Customize aliases: ~/.dotfiles-custom/shell/.aliases"
+echo ""
+echo "Laravel projects:"
+echo "  • Copy config/laravel/* to your project root"
+echo "  • Add composer scripts from config/laravel/composer-scripts.json"
+echo ""
+echo "Optional:"
+echo "  • Discover more agent skills: https://skills.sh"
+echo ""
