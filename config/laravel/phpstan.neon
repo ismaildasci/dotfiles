@@ -1,0 +1,38 @@
+# PHPStan Configuration - Nuno Maduro Style
+# Ultra-strict, type-safe analysis
+# Copy to your Laravel project root
+
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+    - phar://phpstan.phar/conf/bleedingEdge.neon
+
+parameters:
+    level: max
+
+    paths:
+        - app
+        - bootstrap/app.php
+        - config
+        - database
+        - public
+        - routes
+
+    tmpDir: /tmp/phpstan
+
+    # Strict rules
+    checkGenericClassInNonGenericObjectType: true
+    checkMissingIterableValueType: true
+    checkModelProperties: true
+    reportUnmatchedIgnoredErrors: true
+
+    # Ignore patterns (customize as needed)
+    ignoreErrors:
+        # Example: ignore specific errors
+        # - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder::#'
+
+    # Exclude paths
+    excludePaths:
+        - storage/*
+        - bootstrap/cache/*
+        - vendor/*

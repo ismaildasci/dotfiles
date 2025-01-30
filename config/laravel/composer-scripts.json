@@ -1,0 +1,79 @@
+{
+    "_comment": "Nuno Maduro style composer scripts - Add these to your composer.json",
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "setup": [
+            "composer install",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --seed --ansi",
+            "bun install"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"bun run dev\" --names='server,queue,logs,vite'"
+        ],
+        "lint": [
+            "./vendor/bin/rector process",
+            "./vendor/bin/pint",
+            "bun run format"
+        ],
+        "test:lint": [
+            "./vendor/bin/rector process --dry-run",
+            "./vendor/bin/pint --test",
+            "bun run format:check"
+        ],
+        "test:types": [
+            "./vendor/bin/phpstan analyse --ansi --memory-limit=512M"
+        ],
+        "test:unit": [
+            "@php artisan test --parallel --coverage --min=100"
+        ],
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ],
+        "update:requirements": [
+            "composer update --no-interaction",
+            "bun update"
+        ]
+    },
+    "scripts-descriptions": {
+        "setup": "Initial project setup",
+        "dev": "Start development server, queue, logs, and Vite concurrently",
+        "lint": "Run Rector, Pint, and Prettier",
+        "test:lint": "Check code style without making changes",
+        "test:types": "Run PHPStan static analysis",
+        "test:unit": "Run tests with 100% coverage requirement",
+        "test": "Run all tests (lint, types, unit)",
+        "update:requirements": "Update PHP and NPM dependencies"
+    },
+    "require-dev-packages": {
+        "_comment": "Add these to your require-dev",
+        "larastan/larastan": "^3.3",
+        "laravel/pint": "^1.22",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.8",
+        "pestphp/pest": "^3.8",
+        "pestphp/pest-plugin-faker": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.2",
+        "pestphp/pest-plugin-type-coverage": "^3.5",
+        "rector/rector": "^2.0"
+    }
+}

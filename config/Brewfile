@@ -1,0 +1,96 @@
+# Dotfiles Brewfile
+# Install with: brew bundle --file=~/.dotfiles/Brewfile
+
+# Core tools
+brew "node"
+# brew "php" # Herd kendi PHP'sini yönetir
+brew "composer"
+brew "pkg-config"
+brew "wget"
+brew "httpie"
+brew "gh"
+cask "1password-cli"
+brew "git-secret"
+brew "imagemagick"
+brew "mysql"
+brew "yarn"
+brew "ghostscript"
+brew "mackup"
+
+# Taps
+tap "tw93/tap"
+tap "oven-sh/bun"
+
+# macOS Optimization
+brew "mole"              # System cleaner & optimizer (CleanMyMac alternative)
+
+# Zsh
+brew "zsh-autosuggestions"
+
+# Modern CLI replacements
+brew "eza"          # ls replacement
+brew "bat"          # cat replacement
+brew "fd"           # find replacement
+brew "ripgrep"      # grep replacement
+brew "zoxide"       # smart cd
+brew "fzf"          # fuzzy finder
+brew "git-delta"    # better git diffs
+brew "jq"           # JSON processor
+brew "yq"           # YAML processor
+
+# System monitoring
+brew "btop"         # top/htop replacement
+brew "dust"         # du replacement
+brew "procs"        # ps replacement
+brew "ncdu"         # disk usage analyzer
+brew "duf"          # df replacement (disk usage)
+
+# Development tools
+brew "tokei"        # Code statistics
+brew "hyperfine"    # Benchmarking tool
+
+# Network tools
+brew "mtr"          # traceroute alternative
+brew "nmap"         # network scanner
+brew "bandwhich"    # Bandwidth monitor by process
+brew "doggo"        # DNS client (dig replacement) - 'dog' package no longer exists
+
+# Security
+brew "age"          # Modern encryption tool
+brew "croc"         # Secure file transfer
+
+# TUI tools
+brew "lazygit"      # git TUI
+brew "lazydocker"   # docker TUI
+brew "yazi"         # file manager TUI
+
+# Development
+brew "fnm"          # Node.js version manager
+brew "direnv"       # per-directory env vars
+brew "oven-sh/bun/bun"  # Fast npm alternative (Nuno Maduro style)
+# Claude Code: npm install -g @anthropic-ai/claude-code
+
+# Terminal
+cask "ghostty"          # Modern GPU-accelerated terminal
+
+# Window Management (optional)
+cask "rectangle"        # Keyboard window management
+
+# Productivity Apps
+cask "raycast"          # Launcher + hotkeys (Spotlight replacement)
+cask "arc"              # Browser
+cask "obsidian"         # Notes & knowledge base
+
+# Fonts
+cask "font-meslo-lg-nerd-font"
+cask "font-jetbrains-mono-nerd-font"  # Nuno Maduro's choice
+
+# QuickLook plugins
+cask "qlcolorcode"
+cask "qlstephen"
+cask "qlmarkdown"
+# cask "quicklook-json"  # Disabled by Homebrew (2025-12-23)
+cask "qlprettypatch"
+cask "quicklook-csv"
+cask "betterzip"
+cask "suspicious-package"
