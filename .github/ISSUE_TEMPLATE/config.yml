@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question
+    url: https://github.com/ismaildasci/dotfiles/discussions
+    about: Ask a question in GitHub Discussions
