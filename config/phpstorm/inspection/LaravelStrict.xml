@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inspections version="1.0">
-  <option name="myName" value="NunoMaduroInspections" />
+  <option name="myName" value="LaravelStrict" />
   <inspection_tool class="LaravelPintValidationInspection" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="PhpStanValidationInspection" enabled="true" level="ERROR" enabled_by_default="true" />
   <inspection_tool class="PhpCSValidationInspection" enabled="false" level="WARNING" enabled_by_default="false" />

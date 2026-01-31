@@ -1,6 +1,6 @@
-# PHPStorm Settings (Nuno Maduro Style)
+# PHPStorm Settings
 
-Strict, type-safe PHP development settings inspired by Nuno Maduro's coding style.
+Strict, type-safe PHP development settings for Laravel.
 
 ## Quick Install
 
@@ -10,7 +10,7 @@ Strict, type-safe PHP development settings inspired by Nuno Maduro's coding styl
 
 ## What's Included
 
-### Code Style (`codestyles/NunoMaduroStyle.xml`)
+### Code Style (`codestyles/LaravelStrict.xml`)
 - PSR-12 compliant
 - Trailing commas in arrays, parameters, match arms
 - Short array syntax enforced
@@ -18,7 +18,7 @@ Strict, type-safe PHP development settings inspired by Nuno Maduro's coding styl
 - Blank line before return statements
 - 120 character line width
 
-### Inspections (`inspection/NunoMaduroInspections.xml`)
+### Inspections (`inspection/LaravelStrict.xml`)
 - **Laravel Pint** validation enabled
 - **PHPStan** validation enabled (level max)
 - Missing strict types warning
@@ -53,13 +53,13 @@ Strict, type-safe PHP development settings inspired by Nuno Maduro's coding styl
 ### 1. Code Style
 1. Open PHPStorm → Settings → Editor → Code Style
 2. Click gear icon → Import Scheme → IntelliJ IDEA code style XML
-3. Select `codestyles/NunoMaduroStyle.xml`
+3. Select `codestyles/LaravelStrict.xml`
 4. Set as default
 
 ### 2. Inspections
 1. Settings → Editor → Inspections
 2. Click gear icon → Import Profile
-3. Select `inspection/NunoMaduroInspections.xml`
+3. Select `inspection/LaravelStrict.xml`
 
 ### 3. File Watchers
 1. Settings → Tools → File Watchers

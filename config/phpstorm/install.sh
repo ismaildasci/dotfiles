@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# PHPStorm Settings Installer (Nuno Maduro Style)
+# PHPStorm Settings Installer
 # This script copies settings to PHPStorm config directory
 
 set -e
@@ -43,18 +43,18 @@ mkdir -p "$BACKUP_DIR"
 # Copy code styles
 echo "Installing code style..."
 mkdir -p "$PHPSTORM_DIR/codestyles"
-if [ -f "$PHPSTORM_DIR/codestyles/NunoMaduroStyle.xml" ]; then
-    cp "$PHPSTORM_DIR/codestyles/NunoMaduroStyle.xml" "$BACKUP_DIR/"
+if [ -f "$PHPSTORM_DIR/codestyles/LaravelStrict.xml" ]; then
+    cp "$PHPSTORM_DIR/codestyles/LaravelStrict.xml" "$BACKUP_DIR/"
 fi
-cp "$SOURCE_DIR/codestyles/NunoMaduroStyle.xml" "$PHPSTORM_DIR/codestyles/"
+cp "$SOURCE_DIR/codestyles/LaravelStrict.xml" "$PHPSTORM_DIR/codestyles/"
 
 # Copy inspections
 echo "Installing inspections..."
 mkdir -p "$PHPSTORM_DIR/inspection"
-if [ -f "$PHPSTORM_DIR/inspection/NunoMaduroInspections.xml" ]; then
-    cp "$PHPSTORM_DIR/inspection/NunoMaduroInspections.xml" "$BACKUP_DIR/"
+if [ -f "$PHPSTORM_DIR/inspection/LaravelStrict.xml" ]; then
+    cp "$PHPSTORM_DIR/inspection/LaravelStrict.xml" "$BACKUP_DIR/"
 fi
-cp "$SOURCE_DIR/inspection/NunoMaduroInspections.xml" "$PHPSTORM_DIR/inspection/"
+cp "$SOURCE_DIR/inspection/LaravelStrict.xml" "$PHPSTORM_DIR/inspection/"
 
 # Copy file templates
 echo "Installing file templates..."
@@ -67,9 +67,9 @@ echo ""
 echo "Next steps:"
 echo "1. Restart PHPStorm"
 echo "2. Go to Settings → Editor → Code Style → PHP"
-echo "3. Select 'NunoMaduroStyle' from the Scheme dropdown"
+echo "3. Select 'LaravelStrict' from the Scheme dropdown"
 echo "4. Go to Settings → Editor → Inspections"
-echo "5. Select 'NunoMaduroInspections' from the Profile dropdown"
+echo "5. Select 'LaravelStrict' from the Profile dropdown"
 echo ""
 echo "For Pint on Save:"
 echo "1. Settings → Tools → Actions on Save"
