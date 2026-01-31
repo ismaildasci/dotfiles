@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inspections version="1.0">
+  <option name="myName" value="NunoMaduroInspections" />
+  <inspection_tool class="LaravelPintValidationInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpStanValidationInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+  <inspection_tool class="PhpCSValidationInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="PhpMissingStrictTypesDeclarationInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMissingReturnTypeInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMissingParamTypeInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMissingFieldTypeInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUnusedPrivateMethodInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUnusedPrivateFieldInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUnusedLocalVariableInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUnusedParameterInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUnusedAliasInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpPropertyOnlyWrittenInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpArrayShapeAttributeCanBeAddedInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpPossiblePolymorphicInvocationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpLoopNeverIteratesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpDuplicateArrayKeysInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpConditionAlreadyCheckedInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpRedundantCatchClauseInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpStrictComparisonWithOperandsOfDifferentTypesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpNonStrictObjectEqualityInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpStrFunctionsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+    <option name="SUGGEST_MB_FUNCTIONS" value="true" />
+  </inspection_tool>
+  <inspection_tool class="PhpUnnecessaryElseInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUnnecessaryElseIfInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpArrayPushWithOneElementInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpProtectedMemberCanBeMadePrivateInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpClassCanBeFinalInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+  <inspection_tool class="PhpDateTimeImmutableInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+    <Languages>
+      <language minSize="100" name="PHP" />
+    </Languages>
+  </inspection_tool>
+</inspections>

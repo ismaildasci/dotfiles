@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="LafManager">
+    <!-- Dark theme - JetBrains default, do not change -->
+  </component>
+  <component name="UISettings">
+    <option name="HIDE_TOOL_STRIPES" value="false" />
+    <option name="SHOW_MAIN_TOOLBAR" value="false" />
+    <option name="SHOW_STATUS_BAR" value="true" />
+    <option name="SHOW_NAVIGATION_BAR" value="false" />
+    <option name="SHOW_MEMORY_INDICATOR" value="true" />
+    <option name="ANTIALIASING_IN_EDITOR" value="SUBPIXEL" />
+    <option name="SMOOTH_SCROLLING" value="true" />
+  </component>
+</application>

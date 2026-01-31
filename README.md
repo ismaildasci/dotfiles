@@ -90,6 +90,20 @@ cp ~/.dotfiles/config/laravel/pint.json ./
 - Rector for automated refactoring
 - Pint with strict rules
 
+## PHPStorm Settings
+
+Nuno Maduro style settings for strict PHP development:
+
+```bash
+~/.dotfiles/config/phpstorm/install.sh
+```
+
+Includes:
+- Code style (PSR-12, trailing commas, strict formatting)
+- Inspections (Pint, PHPStan, strict types, unused code)
+- File watchers (Pint on save)
+- File templates (`declare(strict_types=1)`)
+
 ## Claude Code
 
 Skills and agents are version-controlled in `config/claude/`:

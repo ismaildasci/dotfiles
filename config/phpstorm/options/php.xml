@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpCodeSniffer">
+    <phpcs_settings>
+      <PhpCSConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
+    </phpcs_settings>
+  </component>
+  <component name="PhpCSFixer">
+    <phpcsfixer_settings>
+      <PhpCSFixerConfiguration tool_path="$PROJECT_DIR$/vendor/bin/php-cs-fixer" />
+    </phpcsfixer_settings>
+  </component>
+  <component name="PhpPint">
+    <pint_settings>
+      <PintConfiguration tool_path="$PROJECT_DIR$/vendor/bin/pint" />
+    </pint_settings>
+  </component>
+  <component name="PhpStan">
+    <phpstan_settings>
+      <PhpStanConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpstan" level="max" />
+    </phpstan_settings>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
+</project>
