@@ -1,0 +1,77 @@
+[
+    // Terminal: Option+Enter to run command without clearing
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b\r"
+        },
+        "when": "terminalFocus"
+    },
+
+    // Quick file switching
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.openEditorAtIndex2"
+    },
+    {
+        "key": "cmd+3",
+        "command": "workbench.action.openEditorAtIndex3"
+    },
+
+    // Toggle sidebar
+    {
+        "key": "cmd+b",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+
+    // Toggle terminal
+    {
+        "key": "cmd+`",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+
+    // Laravel Artisan
+    {
+        "key": "cmd+shift+a",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "php artisan "
+        },
+        "when": "terminalFocus"
+    },
+
+    // Pest test current file
+    {
+        "key": "cmd+t",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "vendor/bin/pest --filter=${fileBasenameNoExtension}\n"
+        },
+        "when": "editorFocus && resourceExtname == .php"
+    },
+
+    // Format document
+    {
+        "key": "cmd+shift+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly"
+    },
+
+    // Go to definition
+    {
+        "key": "cmd+click",
+        "command": "editor.action.revealDefinition"
+    },
+
+    // Quick fix
+    {
+        "key": "cmd+.",
+        "command": "editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    }
+]

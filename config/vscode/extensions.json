@@ -1,0 +1,37 @@
+{
+    "recommendations": [
+        // PHP & Laravel
+        "open-southeners.laravel-pint",
+        "sjanber.laravel-goto",
+        "codingyu.laravel-goto-view",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "ryannaddy.laravel-artisan",
+        "onecentlin.laravel-blade",
+        "shufo.vscode-blade-formatter",
+        "bmewburn.vscode-intelephense-client",
+        "sanderronde.phpstan-vscode",
+        "m1guelpf.better-pest",
+
+        // JavaScript & Frontend
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "vue.volar",
+        "bradlc.vscode-tailwindcss",
+
+        // Git
+        "eamodio.gitlens",
+
+        // AI
+        "github.copilot",
+        "github.copilot-chat",
+
+        // Utilities
+        "editorconfig.editorconfig",
+        "mikestead.dotenv",
+        "gruntfuggly.todo-tree",
+        "streetsidesoftware.code-spell-checker",
+
+        // Theme
+        "whizkydee.material-palenight-theme"
+    ]
+}
