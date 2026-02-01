@@ -20,19 +20,22 @@ For questions about GitHub, use the gh tool
 
 Reference for ultra-strict, type-safe Laravel development.
 
-### Required Dev Dependencies
+### Required Dependencies
 
 ```json
 {
+  "require": {
+    "nunomaduro/essentials": "^1.0"
+  },
   "require-dev": {
     "larastan/larastan": "^3.3",
-    "laravel/pint": "^1.22",
+    "laravel/pint": "^1.24",
     "mockery/mockery": "^1.6",
     "nunomaduro/collision": "^8.8",
-    "pestphp/pest": "^3.8",
+    "pestphp/pest": "^4.1",
     "pestphp/pest-plugin-faker": "^3.0",
-    "pestphp/pest-plugin-laravel": "^3.2",
-    "pestphp/pest-plugin-type-coverage": "^3.5",
+    "pestphp/pest-plugin-laravel": "^4.0",
+    "pestphp/pest-plugin-type-coverage": "^4.0",
     "rector/rector": "^2.0"
   }
 }
@@ -48,6 +51,7 @@ Reference for ultra-strict, type-safe Laravel development.
     "lint": "./vendor/bin/rector process && ./vendor/bin/pint && bun run format",
     "test:lint": "./vendor/bin/rector process --dry-run && ./vendor/bin/pint --test",
     "test:types": "./vendor/bin/phpstan analyse --ansi --memory-limit=512M",
+    "test:type-coverage": "pest --type-coverage --min=100",
     "test:unit": "php artisan test --parallel --coverage --min=100",
     "test": "@test:lint && @test:types && @test:unit"
   }

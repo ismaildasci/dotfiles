@@ -50,8 +50,8 @@
         "declare_parentheses": true,
         "declare_strict_types": true,
         "explicit_string_variable": true,
-        "final_class": false,
-        "final_internal_class": false,
+        "final_class": true,
+        "final_internal_class": true,
         "fully_qualified_strict_types": true,
         "function_declaration": true,
         "global_namespace_import": {
@@ -234,7 +234,14 @@
             "equal": false,
             "identical": false,
             "less_and_greater": false
-        }
+        },
+        "strict_comparison": true,
+        "mb_str_functions": true,
+        "modernize_types_casting": true,
+        "protected_to_private": true,
+        "self_accessor": true,
+        "date_time_immutable": true,
+        "backtick_to_shell_exec": true
     },
     "exclude": [
         "bootstrap/cache",
