@@ -26,11 +26,15 @@
 [gpg]
 	format = ssh
 
+# SSH signing program (platform-specific):
+# macOS: /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+# WSL2: /mnt/c/Users/USERNAME/AppData/Local/1Password/app/8/op-ssh-sign.exe
+# To enable, uncomment the appropriate line and set gpgsign = true
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	# program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 
 [commit]
-	gpgsign = true
+	gpgsign = false
 
 [push]
 	autoSetupRemote = true
@@ -49,3 +53,5 @@
 
 [diff]
 	colorMoved = default
+[tag]
+	gpgsign = false

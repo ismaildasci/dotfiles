@@ -27,28 +27,34 @@ alias gpo="git push origin"
 alias gm="git merge"
 alias uncommit="git reset --soft HEAD~1"
 
-# Fast open
-alias o="open ."
+# Fast open (macOS: 'open', Linux/WSL: handled in .zshrc)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias o="open ."
+    alias phpstorm='open -a ~/Applications/PhpStorm.app "`pwd`"'
+fi
 
 # List all files colorized in long format
 alias l="ls -laF"
 
-# PhpStorm
-alias phpstorm='open -a ~/Applications/PhpStorm.app "`pwd`"'
-
 # Redis
 alias flush-redis="redis-cli FLUSHALL"
 
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+# Show/hide hidden files in Finder (macOS only)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+    alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+fi
 
 # IP addresses
 alias ip="curl ifconfig.me/ip ; echo"
 alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
-# Flush Directory Service cache
-alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+# Flush DNS cache (platform-specific)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+else
+    alias flushdns="sudo systemd-resolve --flush-caches 2>/dev/null || sudo resolvectl flush-caches 2>/dev/null || echo 'DNS cache flush not available'"
+fi
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '

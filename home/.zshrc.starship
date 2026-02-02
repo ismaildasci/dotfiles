@@ -51,8 +51,7 @@ for file in ~/.dotfiles-custom/shell/.{exports,aliases,functions,zshrc}; do
 done
 unset file
 
-# Hub alias
-command -v hub &>/dev/null && eval "$(hub alias -s)"
+# Hub removed - using gh CLI instead
 
 # NPM
 NPM_PACKAGES="${HOME}/.npm-packages"

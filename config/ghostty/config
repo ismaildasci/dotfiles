@@ -37,8 +37,10 @@ palette = 15=#c0caf5
 window-padding-x = 16
 window-padding-y = 12
 window-decoration = true
-macos-titlebar-style = native
 window-save-state = always
+
+# macOS-specific window settings (ignored on Linux)
+# macos-titlebar-style = native
 
 # Background
 background-opacity = 0.95
@@ -87,11 +89,14 @@ scrollback-limit = 50000
 # Prefix with 'no-' to disable, e.g., no-audio
 bell-features = no-audio,attention,title
 
-# macOS specific
-macos-option-as-alt = true
-macos-window-shadow = true
+# Cross-platform settings
 confirm-close-surface = false
 quit-after-last-window-closed = false
+
+# macOS-specific (uncomment on macOS, comment on Linux)
+# These settings are ignored on non-macOS platforms
+macos-option-as-alt = true
+macos-window-shadow = true
 
 # Shell integration
 shell-integration = zsh

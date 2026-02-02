@@ -32,6 +32,8 @@ return RectorConfig::configure()
         __DIR__.'/storage',
         __DIR__.'/vendor',
         AddOverrideAttributeToOverriddenMethodsRector::class,
+        RemoveUselessParamTagRector::class,
+        RemoveUselessReturnTagRector::class,
     ])
     ->withSets([
         // PHP Level
@@ -54,10 +56,6 @@ return RectorConfig::configure()
     ])
     ->withRules([
         InlineConstructorDefaultToPropertyRector::class,
-    ])
-    ->withSkip([
-        RemoveUselessParamTagRector::class,
-        RemoveUselessReturnTagRector::class,
     ])
     ->withImportNames(removeUnusedImports: true)
     ->withCache('/tmp/rector')

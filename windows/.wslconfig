@@ -1,0 +1,31 @@
+# WSL2 Resource Configuration
+# Location: C:\Users\<username>\.wslconfig
+# After changes: wsl --shutdown
+
+[wsl2]
+memory = 8GB
+processors = 4
+swap = 2GB
+localhostForwarding = true
+
+# 2026 Networking (mirrored mode - Windows 11 22H2+)
+# Provides better IPv6 support, LAN access, and localhost forwarding
+networkingMode = mirrored
+dnsProxy = true
+dnsTunneling = true
+firewall = true
+
+# WSLg GUI applications support
+guiApplications = true
+
+# VM idle timeout (5 minutes in ms)
+vmIdleTimeout = 300000
+
+[experimental]
+autoMemoryReclaim = dropCache
+sparseVhd = true
+hostAddressLoopback = true
+bestEffortDnsParsing = true
+
+# Laravel/Node dev ports - prevent port conflicts with Windows
+ignoredPorts = 3000,5173,8000,8080,9000,9003
