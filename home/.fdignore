@@ -1,0 +1,61 @@
+# fd ignore file
+# ~/.fdignore
+
+# Version control
+.git/
+.svn/
+.hg/
+
+# Dependencies
+node_modules/
+vendor/
+bower_components/
+
+# IDE/Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build outputs
+dist/
+build/
+out/
+target/
+.next/
+.nuxt/
+.output/
+
+# Cache directories
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Laravel specific
+storage/logs/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+bootstrap/cache/
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Lock files (usually not searching for these)
+package-lock.json
+yarn.lock
+composer.lock
+pnpm-lock.yaml
+bun.lockb
+
+# Compiled/minified files
+*.min.js
+*.min.css
+*.map
+
+# OS files
+.DS_Store
+Thumbs.db

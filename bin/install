@@ -60,6 +60,22 @@ ln -sf ~/.dotfiles/macos/.mackup.cfg ~/.mackup.cfg
 # Ghostty terminal config
 mkdir -p ~/.config/ghostty
 ln -sf ~/.dotfiles/config/ghostty/config ~/.config/ghostty/config
+
+# Neovim config (LazyVim)
+mkdir -p ~/.config/nvim
+ln -sf ~/.dotfiles/config/nvim/init.lua ~/.config/nvim/init.lua
+ln -sf ~/.dotfiles/config/nvim/lua ~/.config/nvim/lua
+
+# CLI tool configs
+ln -sf ~/.dotfiles/home/.ripgreprc ~/.ripgreprc
+ln -sf ~/.dotfiles/home/.fdignore ~/.fdignore
+mkdir -p ~/.config/bat
+ln -sf ~/.dotfiles/config/bat/config ~/.config/bat/config
+
+# Atuin shell history
+mkdir -p ~/.config/atuin
+ln -sf ~/.dotfiles/config/atuin/config.toml ~/.config/atuin/config.toml
+
 success "Symlinks created"
 
 # NPM setup
@@ -152,6 +168,15 @@ else
     warn "Skipping Claude Code installation"
 fi
 
+# Initialize Atuin (shell history)
+step "Setting up Atuin"
+if command -v atuin &>/dev/null; then
+    echo "  Run 'atuin register' or 'atuin login' to enable sync"
+    success "Atuin installed"
+else
+    warn "Atuin not found - run 'brew install atuin' first"
+fi
+
 # Done
 echo ""
 success "Installation complete!"
@@ -160,6 +185,14 @@ step "Next steps:"
 echo "  • Open Ghostty terminal (already configured)"
 echo "  • Restore settings: mackup restore (if you have backups)"
 echo "  • Customize aliases: ~/.dotfiles-custom/shell/.aliases"
+echo ""
+echo "Neovim (LazyVim):"
+echo "  • Open nvim to bootstrap LazyVim plugins"
+echo "  • Run :checkhealth to verify LSP/treesitter"
+echo ""
+echo "Atuin (shell history sync):"
+echo "  • Run 'atuin register' to create account"
+echo "  • Or 'atuin login' if you have existing account"
 echo ""
 echo "Laravel projects:"
 echo "  • Copy config/laravel/* to your project root"

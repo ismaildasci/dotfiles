@@ -1,0 +1,107 @@
+# Atuin Shell History Configuration
+# ~/.config/atuin/config.toml
+
+# Dialect for the database
+dialect = "sqlite"
+
+# How often to sync history (auto-sync)
+auto_sync = true
+
+# Sync frequency (in seconds)
+sync_frequency = "10m"
+
+# Sync address (default Atuin server)
+# sync_address = "https://api.atuin.sh"
+
+# Search mode: prefix, fulltext, fuzzy, skim
+search_mode = "fuzzy"
+
+# Filter mode: global, host, session, directory
+filter_mode = "global"
+
+# Filter mode for shell up-arrow
+filter_mode_shell_up_arrow = "session"
+
+# Style for the search UI: auto, compact, full
+style = "auto"
+
+# Inline height for compact style
+inline_height = 0
+
+# Show preview of command
+show_preview = true
+
+# Max preview height (lines)
+max_preview_height = 4
+
+# Show help in search
+show_help = true
+
+# Exit after running command from search
+exit_mode = "return-query"
+
+# History filter - commands that won't be recorded
+history_filter = [
+    "^cd",
+    "^ls",
+    "^ll",
+    "^pwd",
+    "^clear",
+    "^exit",
+    "^history",
+    "^atuin",
+]
+
+# Secrets filter - patterns that indicate secrets (won't be synced)
+secrets_filter = true
+
+# Key bindings
+# Ctrl+r is default for search
+# Up arrow for shell history (filtered by session)
+
+# Workspaces - automatically filter by directory
+workspaces = true
+
+# Record timestamps in local time
+local_timeout = 5
+
+# Enter accepts the selected command immediately
+enter_accept = false
+
+# Ctrl+n/p for navigation
+ctrl_n_shortcuts = true
+
+# Store command duration
+record_command_runtime = true
+
+# Show deleted history (if using sync)
+show_deleted_history = false
+
+# Invert search results (newest at bottom)
+invert = false
+
+# Pre-commands to run before search
+prefers_reduced_motion = false
+
+# Word jump mode for ctrl+left/right
+word_jump_mode = "emacs"
+
+# Number of context lines to show
+word_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+# Scroll context
+scroll_context_lines = 1
+
+# Stats configuration
+[stats]
+# Number of common substrings to show
+common_subcommands = ["cargo", "git", "npm", "yarn", "pnpm", "bun", "php", "artisan", "composer", "docker", "kubectl"]
+# Ignore commands with exit code != 0
+common_prefix = ["sudo"]
+
+# Sync settings
+[sync]
+# Sync deleted history
+sync_delete = true
+# Sync frequency
+sync_frequency = "10m"

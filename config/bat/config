@@ -1,0 +1,24 @@
+# bat configuration
+# ~/.config/bat/config
+
+# Use a dark theme that works well with Ghostty
+--theme="OneHalfDark"
+
+# Show line numbers
+--style="numbers,changes,header"
+
+# Use italic text (if terminal supports it)
+--italic-text=always
+
+# Pager settings
+--pager="less -FR"
+
+# Map extensions to languages
+--map-syntax "*.conf:INI"
+--map-syntax ".gitignore:Git Ignore"
+--map-syntax ".env*:Bourne Again Shell (bash)"
+--map-syntax "*.blade.php:HTML (PHP)"
+--map-syntax "*.mdx:Markdown"
+
+# Don't show pager for small files
+# (handled by less -F flag above)

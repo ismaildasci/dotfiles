@@ -68,6 +68,8 @@ brew "yazi"         # file manager TUI
 brew "fnm"          # Node.js version manager
 brew "direnv"       # per-directory env vars
 brew "oven-sh/bun/bun"  # Fast npm alternative (Nuno Maduro style)
+brew "neovim"       # Modern Vim (LazyVim)
+brew "atuin"        # Shell history sync & search
 # Claude Code: npm install -g @anthropic-ai/claude-code
 
 # Terminal

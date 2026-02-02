@@ -1,0 +1,53 @@
+# Ripgrep configuration
+# ~/.ripgreprc
+
+# Smart case: case-insensitive unless uppercase letters are used
+--smart-case
+
+# Search hidden files and directories
+--hidden
+
+# Follow symbolic links
+--follow
+
+# Show line numbers
+--line-number
+
+# Show column numbers
+--column
+
+# Add colors
+--colors=line:fg:yellow
+--colors=line:style:bold
+--colors=path:fg:green
+--colors=path:style:bold
+--colors=match:fg:red
+--colors=match:style:bold
+
+# Ignore common directories
+--glob=!.git/
+--glob=!node_modules/
+--glob=!vendor/
+--glob=!.idea/
+--glob=!.vscode/
+--glob=!*.min.js
+--glob=!*.min.css
+--glob=!package-lock.json
+--glob=!yarn.lock
+--glob=!composer.lock
+--glob=!*.map
+--glob=!coverage/
+--glob=!dist/
+--glob=!build/
+--glob=!.next/
+--glob=!.nuxt/
+--glob=!storage/logs/
+--glob=!storage/framework/
+--glob=!bootstrap/cache/
+
+# Max columns to show (prevents super long lines)
+--max-columns=200
+--max-columns-preview
+
+# Context lines (can be overridden with -C)
+# --context=2
