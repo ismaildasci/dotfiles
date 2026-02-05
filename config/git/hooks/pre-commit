@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Pre-commit hook: Secret leak detection with gitleaks
+# Install globally: git config --global core.hooksPath ~/.config/git/hooks
+
+# Skip if gitleaks is not installed
+if ! command -v gitleaks &> /dev/null; then
+    exit 0
+fi
+
+# Run gitleaks on staged changes
+gitleaks protect --staged --no-banner --verbose 2>&1
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "ERROR: Potential secrets detected in staged files!"
+    echo "Review the output above and remove any secrets before committing."
+    echo ""
+    echo "To skip this check (not recommended):"
+    echo "  git commit --no-verify"
+    echo ""
+    exit 1
+fi

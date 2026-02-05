@@ -80,6 +80,40 @@ ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
 mkdir -p ~/.config/atuin
 ln -sf ~/.dotfiles/config/atuin/config.toml ~/.config/atuin/config.toml
 
+# Lazygit config
+mkdir -p ~/.config/lazygit
+ln -sf ~/.dotfiles/config/lazygit/config.yml ~/.config/lazygit/config.yml
+
+# Lazydocker config
+mkdir -p ~/.config/lazydocker
+ln -sf ~/.dotfiles/config/lazydocker/config.yml ~/.config/lazydocker/config.yml
+
+# Yazi file manager config
+mkdir -p ~/.config/yazi
+ln -sf ~/.dotfiles/config/yazi/yazi.toml ~/.config/yazi/yazi.toml
+ln -sf ~/.dotfiles/config/yazi/keymap.toml ~/.config/yazi/keymap.toml
+ln -sf ~/.dotfiles/config/yazi/theme.toml ~/.config/yazi/theme.toml
+
+# Zellij terminal multiplexer
+mkdir -p ~/.config/zellij/layouts
+ln -sf ~/.dotfiles/config/zellij/config.kdl ~/.config/zellij/config.kdl
+ln -sf ~/.dotfiles/config/zellij/layouts/laravel-dev.kdl ~/.config/zellij/layouts/laravel-dev.kdl
+
+# mise version manager
+mkdir -p ~/.config/mise
+ln -sf ~/.dotfiles/config/mise/config.toml ~/.config/mise/config.toml
+
+# Git hooks (gitleaks, conventional commits)
+mkdir -p ~/.config/git/hooks
+ln -sf ~/.dotfiles/config/git/hooks/pre-commit ~/.config/git/hooks/pre-commit
+ln -sf ~/.dotfiles/config/git/hooks/commit-msg ~/.config/git/hooks/commit-msg
+
+# SSH config
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+ln -sf ~/.dotfiles/home/.ssh_config ~/.ssh/config
+chmod 600 ~/.ssh/config
+
 success "Symlinks created"
 
 # NPM setup
@@ -113,15 +147,14 @@ step "Installing packages from Brewfile"
 brew bundle --file=~/.dotfiles/config/Brewfile || warn "Some packages failed (likely already installed)"
 success "Brewfile processed"
 
-# fnm - Node.js version manager
-step "Setting up fnm"
-if command -v fnm &>/dev/null || [ -x /opt/homebrew/bin/fnm ]; then
-    eval "$(/opt/homebrew/bin/fnm env --use-on-cd)" || warn "fnm activation failed"
-    /opt/homebrew/bin/fnm install --lts || warn "fnm install failed"
-    /opt/homebrew/bin/fnm use lts-latest || warn "fnm use failed"
-    success "fnm configured"
+# mise - unified version manager
+step "Setting up mise"
+if command -v mise &>/dev/null; then
+    eval "$(mise activate bash)" || warn "mise activation failed"
+    mise install || warn "mise install failed"
+    success "mise configured (manages Node.js, Python, Ruby, Go, etc.)"
 else
-    warn "fnm not found - run 'brew install fnm' first"
+    warn "mise not found - run 'brew install mise' first"
 fi
 
 # Laravel Herd
@@ -181,6 +214,15 @@ else
     warn "Atuin not found - run 'brew install atuin' first"
 fi
 
+# Configure global git hooks
+step "Configuring git hooks"
+if [ -d ~/.config/git/hooks ]; then
+    git config --global core.hooksPath ~/.config/git/hooks
+    success "Git hooks configured (gitleaks + conventional commits)"
+else
+    warn "Git hooks directory not found"
+fi
+
 # Done
 echo ""
 success "Installation complete!"
@@ -198,10 +240,20 @@ echo "Atuin (shell history sync):"
 echo "  - Run 'atuin register' to create account"
 echo "  - Or 'atuin login' if you have existing account"
 echo ""
+echo "Zellij (terminal multiplexer):"
+echo "  - Run 'zellij' to start"
+echo "  - Laravel dev layout: zellij --layout ~/.config/zellij/layouts/laravel-dev.kdl"
+echo ""
+echo "mise (version manager):"
+echo "  - Run 'mise install node@lts' to install Node.js"
+echo "  - Run 'mise use node@lts' to set default"
+echo "  - Add .mise.toml to projects for per-project versions"
+echo ""
 echo "Laravel projects:"
 echo "  - Copy config/laravel/* to your project root"
 echo "  - Add composer scripts from config/laravel/composer-scripts.json"
 echo ""
 echo "Optional:"
+echo "  - Run 'just check' to verify tool installations"
 echo "  - Discover more agent skills: https://skills.sh"
 echo ""

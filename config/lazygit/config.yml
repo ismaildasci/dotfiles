@@ -1,0 +1,70 @@
+# lazygit configuration
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+
+gui:
+  theme:
+    activeBorderColor:
+      - "#f9a825"
+      - bold
+    inactiveBorderColor:
+      - "#585b70"
+    searchingActiveBorderColor:
+      - "#f9a825"
+      - bold
+    optionsTextColor:
+      - "#89b4fa"
+    selectedLineBgColor:
+      - "#313244"
+    selectedRangeBgColor:
+      - "#313244"
+    cherryPickedCommitBgColor:
+      - "#45475a"
+    cherryPickedCommitFgColor:
+      - "#f9a825"
+    unstagedChangesColor:
+      - "#f38ba8"
+    defaultFgColor:
+      - "#cdd6f4"
+  showIcons: true
+  nerdFontsVersion: "3"
+  showFileTree: true
+  showListFooter: false
+  showRandomTip: false
+  showCommandLog: false
+  showBottomLine: false
+  border: rounded
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  commit:
+    signOff: false
+  merging:
+    manualCommit: false
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
+  overrideGpg: false
+
+os:
+  editPreset: "nvim"
+
+keybinding:
+  universal:
+    quit: "q"
+    quit-alt1: "<c-c>"
+    return: "<escape>"
+
+customCommands:
+  - key: "<c-p>"
+    description: "Push to origin"
+    command: "git push origin {{.SelectedLocalBranch.Name}}"
+    context: "localBranches"
+    loadingText: "Pushing..."
+
+  - key: "b"
+    description: "Checkout remote branch"
+    command: "git checkout --track {{.SelectedRemoteBranch.RemoteName}}/{{.SelectedRemoteBranch.Name}}"
+    context: "remoteBranches"
+    loadingText: "Checking out..."

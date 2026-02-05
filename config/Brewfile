@@ -1,9 +1,13 @@
 # Dotfiles Brewfile
-# Install with: brew bundle --file=~/.dotfiles/Brewfile
+# Install with: brew bundle --file=~/.dotfiles/config/Brewfile
+
+# Taps
+tap "tw93/tap"
+tap "oven-sh/bun"
 
 # Core tools
 brew "node"
-# brew "php" # Herd kendi PHP'sini yönetir
+# brew "php" # Herd kendi PHP'sini yonetir
 brew "composer"
 brew "pkg-config"
 brew "wget"
@@ -16,10 +20,6 @@ brew "mysql"
 brew "yarn"
 brew "ghostscript"
 brew "mackup"
-
-# Taps
-tap "tw93/tap"
-tap "oven-sh/bun"
 
 # macOS Optimization
 brew "mole"              # System cleaner & optimizer (CleanMyMac alternative)
@@ -37,6 +37,9 @@ brew "fzf"          # fuzzy finder
 brew "git-delta"    # better git diffs
 brew "jq"           # JSON processor
 brew "yq"           # YAML processor
+brew "sd"           # sed replacement (simpler syntax)
+brew "choose-rust"  # cut/awk replacement
+brew "xh"           # httpie in Rust, faster
 
 # System monitoring
 brew "btop"         # top/htop replacement
@@ -44,28 +47,42 @@ brew "dust"         # du replacement
 brew "procs"        # ps replacement
 brew "ncdu"         # disk usage analyzer
 brew "duf"          # df replacement (disk usage)
+brew "viddy"        # modern watch command
+brew "oha"          # HTTP load testing (ab/wrk alternative)
 
 # Development tools
 brew "tokei"        # Code statistics
 brew "hyperfine"    # Benchmarking tool
+brew "just"         # Modern Makefile alternative (task runner)
+brew "glow"         # Terminal markdown viewer
+brew "silicon"      # Code screenshot generator
+
+# Version management
+brew "mise"         # Unified version manager (node, python, ruby, go...)
 
 # Network tools
 brew "mtr"          # traceroute alternative
 brew "nmap"         # network scanner
 brew "bandwhich"    # Bandwidth monitor by process
-brew "doggo"        # DNS client (dig replacement) - 'dog' package no longer exists
+brew "doggo"        # DNS client (dig replacement)
 
 # Security
 brew "age"          # Modern encryption tool
 brew "croc"         # Secure file transfer
+brew "gitleaks"     # Secret scanning in git repos
 
 # TUI tools
 brew "lazygit"      # git TUI
 brew "lazydocker"   # docker TUI
 brew "yazi"         # file manager TUI
 
+# Terminal multiplexer
+brew "zellij"       # Modern terminal multiplexer (tmux alternative)
+
+# Shell completions
+brew "carapace"     # Universal shell completions (900+ commands)
+
 # Development
-brew "fnm"          # Node.js version manager
 brew "direnv"       # per-directory env vars
 brew "oven-sh/bun/bun"  # Fast npm alternative (Nuno Maduro style)
 brew "neovim"       # Modern Vim (LazyVim)

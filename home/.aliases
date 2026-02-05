@@ -108,3 +108,28 @@ if command -v nvim &> /dev/null; then
     alias vi="nvim"
     alias v="nvim"
 fi
+
+# Zellij
+if command -v zellij &> /dev/null; then
+    alias zj="zellij"
+    alias zja="zellij attach"
+    alias zjl="zellij --layout ~/.config/zellij/layouts/laravel-dev.kdl"
+fi
+
+# New CLI tools
+if command -v glow &> /dev/null; then
+    alias mdview="glow"
+fi
+
+if command -v viddy &> /dev/null; then
+    alias watch="viddy"
+fi
+
+if command -v xh &> /dev/null; then
+    alias http="xh"
+fi
+
+# just (task runner)
+if command -v just &> /dev/null; then
+    alias j="just"
+fi

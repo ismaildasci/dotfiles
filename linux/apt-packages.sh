@@ -93,9 +93,12 @@ if ! command -v atuin &> /dev/null; then
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 fi
 
-step "Installing fnm (Node.js version manager)"
-if ! command -v fnm &> /dev/null; then
-    curl -fsSL https://fnm.vercel.app/install | bash
+step "Installing mise (unified version manager)"
+if ! command -v mise &> /dev/null; then
+    curl https://mise.run | sh
+    # Add to PATH for current session
+    export PATH="$HOME/.local/bin:$PATH"
+    mise install node@lts || warn "mise node install failed"
 fi
 
 step "Installing Bun (fast npm alternative)"
@@ -141,6 +144,47 @@ fi
 step "Installing croc (secure file transfer)"
 if ! command -v croc &> /dev/null; then
     curl https://getcroc.schollz.com | bash
+fi
+
+step "Installing zellij (terminal multiplexer)"
+if ! command -v zellij &> /dev/null; then
+    ZELLIJ_VERSION=$(curl -s "https://api.github.com/repos/zellij-org/zellij/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo zellij.tar.gz "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz"
+    tar xf zellij.tar.gz
+    sudo install zellij /usr/local/bin
+    rm -f zellij zellij.tar.gz
+fi
+
+step "Installing gitleaks (secret scanning)"
+if ! command -v gitleaks &> /dev/null; then
+    GITLEAKS_VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+    tar xf gitleaks.tar.gz gitleaks
+    sudo install gitleaks /usr/local/bin
+    rm -f gitleaks gitleaks.tar.gz
+fi
+
+step "Installing just (task runner)"
+if ! command -v just &> /dev/null; then
+    curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
+fi
+
+step "Installing carapace (universal completions)"
+if ! command -v carapace &> /dev/null; then
+    CARAPACE_VERSION=$(curl -s "https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo carapace.tar.gz "https://github.com/carapace-sh/carapace-bin/releases/latest/download/carapace-bin_linux_amd64.tar.gz"
+    tar xf carapace.tar.gz
+    sudo install carapace /usr/local/bin
+    rm -f carapace carapace.tar.gz
+fi
+
+step "Installing glow (markdown viewer)"
+if ! command -v glow &> /dev/null; then
+    GLOW_VERSION=$(curl -s "https://api.github.com/repos/charmbracelet/glow/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo glow.tar.gz "https://github.com/charmbracelet/glow/releases/latest/download/glow_${GLOW_VERSION}_Linux_x86_64.tar.gz"
+    tar xf glow.tar.gz glow
+    sudo install glow /usr/local/bin
+    rm -f glow glow.tar.gz
 fi
 
 success "APT packages installation complete!"

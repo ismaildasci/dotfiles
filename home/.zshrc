@@ -171,9 +171,9 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
-# fnm - Node.js version manager
-if command -v fnm &> /dev/null; then
-    eval "$(fnm env --use-on-cd)"
+# mise - unified version manager (replaces fnm, nvm, pyenv, etc.)
+if command -v mise &> /dev/null; then
+    eval "$(mise activate zsh)"
 fi
 
 # Atuin - shell history sync & search
@@ -189,4 +189,19 @@ fi
 # direnv - per-directory environment variables
 if command -v direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
+fi
+
+# fzf - fuzzy finder keybindings and completions
+if command -v fzf &> /dev/null; then
+    # Load fzf config (theme, preview settings)
+    [ -f ~/.dotfiles/config/fzf/config.sh ] && source ~/.dotfiles/config/fzf/config.sh
+    # fzf keybindings (Ctrl+T, Ctrl+R, Alt+C)
+    source <(fzf --zsh 2>/dev/null) || true
+fi
+
+# carapace - universal shell completions
+if command -v carapace &> /dev/null; then
+    export CARAPACE_BRIDGES='zsh,bash'
+    zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+    source <(carapace _carapace zsh)
 fi

@@ -1,0 +1,31 @@
+# lazydocker configuration
+# https://github.com/jesseduffield/lazydocker
+
+gui:
+  theme:
+    activeBorderColor:
+      - "#f9a825"
+      - bold
+    inactiveBorderColor:
+      - "#585b70"
+    optionsTextColor:
+      - "#89b4fa"
+    selectedLineBgColor:
+      - "#313244"
+    defaultFgColor:
+      - "#cdd6f4"
+  border: rounded
+  showAllContainers: false
+  returnImmediately: false
+  wrapMainPanel: true
+
+logs:
+  timestamps: true
+  since: "60m"
+  tail: "200"
+
+commandTemplates:
+  dockerCompose: "docker compose"
+  restartService: "{{ .DockerCompose }} restart {{ .Service.Name }}"
+  stopService: "{{ .DockerCompose }} stop {{ .Service.Name }}"
+  serviceLogs: "{{ .DockerCompose }} logs --since=60m --follow {{ .Service.Name }}"

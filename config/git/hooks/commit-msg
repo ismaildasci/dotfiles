@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# Commit message hook: Conventional Commits validation
+# https://www.conventionalcommits.org/
+#
+# Valid formats:
+#   feat: add login page
+#   fix(auth): resolve token expiry issue
+#   docs: update README
+#   chore: bump dependencies
+
+commit_msg_file="$1"
+commit_msg=$(head -1 "$commit_msg_file")
+
+# Skip merge commits and fixup commits
+if echo "$commit_msg" | grep -qE "^(Merge|fixup!|squash!|amend!|Revert)"; then
+    exit 0
+fi
+
+# Skip if message is from AI-generated commit (commit function)
+if echo "$commit_msg" | grep -qE "^(Add|Fix|Update|Remove|Refactor|Improve|Implement|Create|Delete|Move|Rename|Bump|Release|Merge)"; then
+    exit 0
+fi
+
+# Conventional commit pattern
+pattern="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?: .{1,}"
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+    echo ""
+    echo "WARNING: Commit message doesn't follow Conventional Commits format."
+    echo ""
+    echo "Expected: <type>(<scope>): <description>"
+    echo "Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+    echo ""
+    echo "Examples:"
+    echo "  feat: add user authentication"
+    echo "  fix(api): handle null response"
+    echo "  docs: update installation guide"
+    echo ""
+    echo "Your message: $commit_msg"
+    echo ""
+    # Warning only - don't block the commit
+    # Change 'exit 0' to 'exit 1' to enforce
+    exit 0
+fi

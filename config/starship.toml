@@ -75,6 +75,27 @@ time_format = "%R"
 style = "bg:black fg:white"
 format = "[ $time ]($style)"
 
+# Container detection (Docker/Podman/Distrobox)
+[container]
+disabled = false
+format = "[$symbol]($style) "
+style = "bold red"
+
+# Battery warning (only shows when low)
+[battery]
+disabled = false
+full_symbol = ""
+charging_symbol = ""
+discharging_symbol = ""
+
+[[battery.display]]
+threshold = 20
+style = "bold red"
+
+[[battery.display]]
+threshold = 50
+style = "bold yellow"
+
 # Disable modules we don't need for speed
 [aws]
 disabled = true

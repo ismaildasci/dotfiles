@@ -102,6 +102,40 @@ if command -v starship &> /dev/null; then
     fi
 fi
 
+# Lazygit config
+mkdir -p ~/.config/lazygit
+ln -sf ~/.dotfiles/config/lazygit/config.yml ~/.config/lazygit/config.yml
+
+# Lazydocker config
+mkdir -p ~/.config/lazydocker
+ln -sf ~/.dotfiles/config/lazydocker/config.yml ~/.config/lazydocker/config.yml
+
+# Yazi file manager config
+mkdir -p ~/.config/yazi
+ln -sf ~/.dotfiles/config/yazi/yazi.toml ~/.config/yazi/yazi.toml
+ln -sf ~/.dotfiles/config/yazi/keymap.toml ~/.config/yazi/keymap.toml
+ln -sf ~/.dotfiles/config/yazi/theme.toml ~/.config/yazi/theme.toml
+
+# Zellij terminal multiplexer
+mkdir -p ~/.config/zellij/layouts
+ln -sf ~/.dotfiles/config/zellij/config.kdl ~/.config/zellij/config.kdl
+ln -sf ~/.dotfiles/config/zellij/layouts/laravel-dev.kdl ~/.config/zellij/layouts/laravel-dev.kdl
+
+# mise version manager
+mkdir -p ~/.config/mise
+ln -sf ~/.dotfiles/config/mise/config.toml ~/.config/mise/config.toml
+
+# Git hooks (gitleaks, conventional commits)
+mkdir -p ~/.config/git/hooks
+ln -sf ~/.dotfiles/config/git/hooks/pre-commit ~/.config/git/hooks/pre-commit
+ln -sf ~/.dotfiles/config/git/hooks/commit-msg ~/.config/git/hooks/commit-msg
+
+# SSH config
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+ln -sf ~/.dotfiles/home/.ssh_config ~/.ssh/config
+chmod 600 ~/.ssh/config
+
 success "Symlinks created"
 
 # WSL-specific setup
@@ -129,15 +163,14 @@ if command -v npm &> /dev/null; then
 fi
 success "npm configured"
 
-# fnm Node.js setup
-step "Setting up Node.js via fnm"
-if command -v fnm &> /dev/null; then
-    eval "$(fnm env)"
-    fnm install --lts || warn "fnm install failed"
-    fnm use lts-latest || warn "fnm use failed"
-    success "Node.js installed via fnm"
+# mise - unified version manager
+step "Setting up mise"
+if command -v mise &> /dev/null; then
+    eval "$(mise activate bash)"
+    mise install || warn "mise install failed"
+    success "mise configured (manages Node.js, Python, Ruby, Go, etc.)"
 else
-    warn "fnm not found - run apt-packages.sh first"
+    warn "mise not found - run apt-packages.sh first"
 fi
 
 # PHP/Composer
@@ -177,6 +210,15 @@ else
     warn "Skipping Claude Code"
 fi
 
+# Configure global git hooks
+step "Configuring git hooks"
+if [ -d ~/.config/git/hooks ]; then
+    git config --global core.hooksPath ~/.config/git/hooks
+    success "Git hooks configured (gitleaks + conventional commits)"
+else
+    warn "Git hooks directory not found"
+fi
+
 # Change default shell to zsh
 step "Setting zsh as default shell"
 if [ "$SHELL" != "$(which zsh)" ]; then
@@ -204,6 +246,14 @@ if [ "$IS_WSL" = true ]; then
     echo ""
 fi
 
+echo "Zellij (terminal multiplexer):"
+echo "  - Run 'zellij' to start"
+echo "  - Laravel dev layout: zellij --layout ~/.config/zellij/layouts/laravel-dev.kdl"
+echo ""
+echo "mise (version manager):"
+echo "  - Run 'mise install node@lts' to install Node.js"
+echo "  - Run 'mise use node@lts' to set default"
+echo ""
 echo "Laravel projects:"
 echo "  - Copy config/laravel/* to your project root"
 echo "  - Add composer scripts from config/laravel/composer-scripts.json"

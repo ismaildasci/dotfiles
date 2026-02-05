@@ -1,0 +1,62 @@
+// Zellij configuration
+// https://zellij.dev/documentation/
+
+// Theme - Catppuccin Mocha with orange accent
+theme "custom" {
+    fg "#cdd6f4"
+    bg "#1e1e2e"
+    black "#181825"
+    red "#f38ba8"
+    green "#a6e3a1"
+    yellow "#f9a825"
+    blue "#89b4fa"
+    magenta "#cba6f7"
+    cyan "#89dceb"
+    white "#cdd6f4"
+    orange "#f9a825"
+}
+
+themes {
+    default_theme "custom"
+}
+
+// General settings
+pane_frames false
+default_layout "compact"
+default_shell "zsh"
+scrollback_editor "nvim"
+copy_on_select true
+mouse_mode true
+scroll_buffer_size 50000
+
+// Keybindings
+keybinds {
+    normal {
+        // Quick pane navigation
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt l" { MoveFocus "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+
+        // Pane resizing
+        bind "Alt H" { Resize "Left"; }
+        bind "Alt L" { Resize "Right"; }
+        bind "Alt J" { Resize "Down"; }
+        bind "Alt K" { Resize "Up"; }
+
+        // Quick tab navigation
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+
+        // Floating pane toggle
+        bind "Alt f" { ToggleFloatingPanes; }
+
+        // New pane
+        bind "Alt n" { NewPane; }
+        bind "Alt d" { NewPane "Right"; }
+        bind "Alt D" { NewPane "Down"; }
+    }
+}

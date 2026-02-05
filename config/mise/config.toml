@@ -1,0 +1,16 @@
+# mise (mise-en-place) - Unified version manager
+# https://mise.jdx.dev/
+#
+# Global configuration - project-specific .mise.toml overrides these
+
+[tools]
+node = "lts"
+bun = "latest"
+
+[settings]
+experimental = true
+always_keep_download = false
+always_keep_install = false
+legacy_version_file = true          # Support .node-version, .nvmrc etc.
+plugin_autoupdate_last_check_duration = "1 week"
+verbose = false
