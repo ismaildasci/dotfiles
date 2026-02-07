@@ -56,7 +56,8 @@ step "Installing development tools"
 sudo apt install -y \
     neovim \
     unzip zip \
-    zsh-autosuggestions
+    zsh-autosuggestions \
+    zsh-syntax-highlighting
 
 step "Installing lazygit"
 if ! command -v lazygit &> /dev/null; then

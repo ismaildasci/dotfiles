@@ -92,6 +92,9 @@ if [[ "$OS_TYPE" == "macos" ]]; then
     # Zsh autosuggestions (brew location)
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+    # Zsh syntax highlighting (brew location)
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
     # Import ssh keys in keychain
     ssh-add -A 2>/dev/null;
 
@@ -127,6 +130,10 @@ elif [[ "$OS_TYPE" == "wsl" ]] || [[ "$OS_TYPE" == "linux" ]]; then
     # Zsh autosuggestions (apt location)
     [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
         source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+    # Zsh syntax highlighting (apt location)
+    [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+        source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
     # PHP/Composer (system)
     export PATH="$HOME/.config/composer/vendor/bin:$PATH"

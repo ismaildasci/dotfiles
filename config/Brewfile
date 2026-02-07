@@ -26,6 +26,7 @@ brew "mole"              # System cleaner & optimizer (CleanMyMac alternative)
 
 # Zsh
 brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 
 # Modern CLI replacements
 brew "eza"          # ls replacement

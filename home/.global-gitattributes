@@ -1,0 +1,56 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code — always LF
+*.php text eol=lf
+*.blade.php text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.jsx text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.vue text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+*.env text eol=lf
+*.sql text eol=lf
+*.html text eol=lf
+*.twig text eol=lf
+
+# Lock files — binary (no diff, no merge)
+composer.lock binary
+package-lock.json binary
+yarn.lock binary
+bun.lockb binary
+pnpm-lock.yaml binary
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.avif binary
+*.svg text eol=lf
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+*.gz binary
+
+# Better diffs
+*.md diff=markdown
+*.php diff=php
+*.css diff=css
+*.html diff=html

@@ -1,5 +1,6 @@
 [core]
 	excludesfile = /Users/ismail-dasci/.global-gitignore
+	attributesfile = /Users/ismail-dasci/.global-gitattributes
 	autocrlf = false
 	pager = delta
 
